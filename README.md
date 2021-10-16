@@ -7,6 +7,9 @@ I am really interested in getting into the field of Computer Science and particu
 
 ## How it works
 
+### hashlib Module
+By using this module, we can offer protection to the password.
+
 ### The inputpass() Function
 
 ```python
