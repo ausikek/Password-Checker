@@ -1,11 +1,11 @@
 
-# Password Checker
+# 💻 Password Checker
 This program checks if a password has been compromised using the pwnedpasswords API with K-Anonimity model.
 
-## Motivation
+## 🤔Motivation
 I am really interested in getting into the field of Computer Science and particularly Cybersecurity and Criptography. Buiding Password Checker to me was a brief introduction of some tools that can be used on that field.
 
-## How it works
+## ❗ How it works
 
 ### hashlib Module
 By using this module, we can offer protection to the password.
