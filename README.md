@@ -102,6 +102,8 @@ As the name suggests, this function will finally return us the count that will b
 ## Credits
 Password Checker is one of a series of projects from Andrei's Anagoie course **Complete Python Developer**.
 
+Outside of the course, I implemented Flask to create a link between the front-end and the back-end of a website.
+
 I'd like to thank Andrei for being a professional, funny and skilled professor. Looking forward to continue learning with you.
 
 
