@@ -36,7 +36,7 @@ We will be using Flask to create a server. With Flask, we can get the user's inp
 
 ### What happens in the back-end?
 
-The back-end will be called with the Master() Function. Let's see 
+The back-end will be called with the Master() Function. It simply contains all the functions below.
 
 ### The inputpass() Function
 
