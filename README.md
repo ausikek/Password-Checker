@@ -104,6 +104,8 @@ Password Checker is one of a series of projects from Andrei's Anagoie course **C
 
 Outside of the course, I implemented Flask to create a link between the front-end and the back-end of a website.
 
+You can check it out here: http://ausikek.pythonanywhere.com
+
 I'd like to thank Andrei for being a professional, funny and skilled professor. Looking forward to continue learning with you.
 
 
