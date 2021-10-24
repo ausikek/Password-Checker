@@ -7,45 +7,63 @@ I am really interested in getting into the field of Computer Science and particu
 
 ## ❗ How it works
 
-### hashlib Module
-By using this module, we can offer protection to the password.
+### Using Flask 
+
+```python
+from flask import Flask, render_template, redirect, request
+from password import Master
+
+app = Flask(__name__)
+
+
+@app.route("/", methods=['POST', 'GET'])
+def index():
+    if request.method == 'POST':
+        L = []
+        senha = request.form["inputPassword5"]
+        x = Master(senha=senha)
+        L.append(x)
+
+        try:
+            redirect('/')
+            return render_template('password.html', L=L)
+        except:
+            return 'Well, it didn\'t work'
+    else:
+        return render_template('index.html')
+```
+We will be using Flask to create a server. With Flask, we can get the user's input and send it to our password verifier function.
+
+### What happens in the back-end?
+
+The back-end will be called with the Master() Function. Let's see 
 
 ### The inputpass() Function
 
 ```python
-def inputpass():
-    password_storer = []
-    clientpass = input('Please input your password: ')
-    with open('./Password.txt', 'w+') as createuserpassword:
-        createuserpassword.write(f'{clientpass}')
-    
-    with open('./Password.txt', 'r') as userpassword:
-        userpass = userpassword.read()
-        password_storer.append(userpass)
-    return password_storer
+def inputpass(senha):
+        L = []
+        L.append(senha)
+        return L
 ```
-This function writes the password that the user will input in the terminal to a .txt file. The text in that file will later be encrypted using SHA-1.
+This function simply catches the user's "password" and returns a list with it.
 
-### The main() Function
+### The displayer() Function
 
 ```python
-def main():
-    for password in inputpass():
-        count = api_checkpwned(password)
-        securepass = len(password) * '*'
-        if count:
-            print(f'{securepass} was found {count} times.')
-        else:
-            print(f'{securepass} was not found.')
-    
-    with open('./Password.txt', 'w+') as final:
-        encrypted = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
-        final.write(f'{encrypted}')
+def displayer(senha):
+        for password in inputpass(senha):
+            count = api_check_pwned(password)
+            securepass = len(password) * '*'
+            if count:
+                return f'{securepass} was found {count} times. Oh Oh!'
+            else:
+                return f'{securepass} was not found. Congratulations!'
 
 ```        
 This function gets the password from inputpass() and creates "count", that will be the number of times the password was found.
 
-It then prints the number of time it was found and edits the Password.txt file that was created in inputpass().
+It then prints the number of time it was found.
 
 ### The api_checkpwned() Function
 
@@ -70,8 +88,6 @@ def request_api_data(query_chars):
 ```
 This function will give us the number of times the password has been found using the pwnedpasswords API. It will search using the first five characters of the SHA-1 encrypted password (K-Anonimity).
 
-That is the moment we will know if the password has been compromised or not.
-
 ### The get_psswrd_leaks_count()
 ```python
 def getpsswrd_leaks_count(hashes, checkhash):
@@ -82,23 +98,6 @@ def getpsswrd_leaks_count(hashes, checkhash):
     return 0
 ```
 As the name suggests, this function will finally return us the count that will be displayed to the user. It compares the output of request_api_data() with the rest of the encrypted strings (that is, everything but the first five characters). If that comparison is true, we output the count. If not, we output 0.
-
-### Back to main()
-```python
-def main():
-    for password in inputpass():
-        count = api_checkpwned(password)
-        securepass = len(password) * '*'
-        if count:
-            print(f'{securepass} was found {count} times.')
-        else:
-            print(f'{securepass} was not found.')
-    
-    with open('./Password.txt', 'w+') as final:
-        encrypted = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
-        final.write(f'{encrypted}')
-```
-Now that we have the count, we can display it to the user.
 
 ## Credits
 Password Checker is one of a series of projects from Andrei's Anagoie course **Complete Python Developer**.
