@@ -2,7 +2,8 @@ import requests
 import hashlib as hl
 
 
-def Master(senha):
+class Verifier:
+    
     def request_api_data(query_chars):
         url = 'https://api.pwnedpasswords.com/range/' + str(query_chars)
         Response = requests.get(url)
@@ -20,20 +21,24 @@ def Master(senha):
     def api_check_pwned(password):
         sha1passwrd = hl.sha1(password.encode('utf-8')).hexdigest().upper()
         usable, nonusable = sha1passwrd[:5], sha1passwrd[5:]
-        response2 = request_api_data(usable)
-        return getpsswrd_leaks_count(response2, nonusable)
-
+        response2 = Verifier.request_api_data(usable)
+        return Verifier.getpsswrd_leaks_count(response2, nonusable)
+    
     def inputpass(senha):
         L = []
         L.append(senha)
         return L
-
-    def main(senha):
-        for password in inputpass(senha):
-            count = api_check_pwned(password)
-            securepass = len(password) * '*'
-            if count:
-                return f'{securepass} was found {count} times. Oh Oh!'
+    
+    @staticmethod
+    def displayer(senha):
+        for password in Verifier.inputpass(senha):
+            if len(senha) > 0:
+                count = Verifier.api_check_pwned(password)
+                securepass = len(password) * '*'
+                if count:
+                    return f'{securepass} was found {count} times. Oh Oh!'
+                else:
+                    return f'{securepass} was not found. Congratulations!'
             else:
-                return f'{securepass} was not found. Congratulations!'
-    return main(senha)
+                return 'Please insert a valid password.'
+
