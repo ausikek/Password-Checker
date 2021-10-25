@@ -21,7 +21,7 @@ def index():
     if request.method == 'POST':
         L = []
         senha = request.form["inputPassword5"]
-        x = Master(senha=senha)
+        x = Verifier.displayer(senha=senha)
         L.append(x)
 
         try:
@@ -36,7 +36,7 @@ We will be using Flask to create a server. With Flask, we can get the user's inp
 
 ### What happens in the back-end?
 
-The back-end will be called with the Master() Function. It simply contains all the functions below.
+The back-end will be called with the Verifier Class. It simply contains all the functions below.
 
 ### The inputpass() Function
 
