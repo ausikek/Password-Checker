@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request
-from password import Master
+from password import Verifier
 
 app = Flask(__name__)
 
@@ -9,7 +9,7 @@ def index():
     if request.method == 'POST':
         L = []
         senha = request.form["inputPassword5"]
-        x = Master(senha=senha)
+        x = Verifier.displayer(senha=senha)
         L.append(x)
 
         try:
