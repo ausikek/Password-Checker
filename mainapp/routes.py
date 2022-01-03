@@ -25,6 +25,7 @@ def table_shower():
     for item in pass_counter:
         pass_final.append(str(item))
     pass_sorted = Counter(pass_final).most_common()
+    
     return pass_sorted
 
 
@@ -56,6 +57,5 @@ def index():
         except:
             return 'Error in displaying None'
 
-    print(table_shower())
     return render_template('index.html', form=form,
                            passlist=table_shower(), listlen=len(table_shower()))

@@ -6,6 +6,7 @@ body {
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    background: linear-gradient(to right, rgb(197, 17, 241) , red);
 }
 
 #inputPassword5 {
@@ -19,15 +20,6 @@ body {
 
 .btn:hover {
     transform: scale(1.05);
-}
-
-.root{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 
 ol {
